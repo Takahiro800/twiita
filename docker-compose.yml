@@ -21,8 +21,12 @@ services:
     environment:
       TZ: Asia/Tokyo
       RAILS_ENV: development
+    env_file:
+      - .envrc
     ports:
       - "3000:3000"
+    stdin_open: true
+    tty: true
     depends_on:
       - db
   front:

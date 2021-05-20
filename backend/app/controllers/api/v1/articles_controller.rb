@@ -23,7 +23,6 @@ class Api::V1::ArticlesController < ApplicationController
 
   def set_twitter_client
     twitter_client = Twitter::REST::Client.new do |config|
-      binding.pry
       config.consumer_key = ENV['TWITTER_API_KEY']
       config.consumer_secret = ENV['TWITTER_SECRET_API_KEY']
       config.access_token = ENV['TWITTER_ACCESS_TOKEN']

@@ -3,15 +3,13 @@ import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router/Router";
 import theme from "./theme/theme";
-import { ArticleType } from "./types/api/articleType";
 import { ArticleCard } from "./componentes/ArticleCard";
-import { useState } from "react";
-import { usePullArticles } from "./componentes/hooks/usePullArticles";
+import { usePullFavorites } from "./componentes/hooks/usePullFavorites";
 
 export default function App() {
-  const { pullArticles, articles, loading, error } = usePullArticles();
+  const { pullFavorites, articles, loading, error } = usePullFavorites();
 
-  const onClickArticles = () => pullArticles();
+  const onClickArticles = () => pullFavorites();
 
   const createArticles = () => {
     axios

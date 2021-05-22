@@ -2,18 +2,18 @@ import axios from "axios";
 import { useState } from "react";
 import { ArticleType } from "../../types/api/articleType";
 
-export const usePullArticles = () => {
+export const usePullFavorites = () => {
   const [articles, setArticles] = useState<Array<ArticleType>>([]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const pullArticles = () => {
+  const pullFavorites = () => {
     setLoading(true);
     setError(false);
 
     axios
-      .get<Array<ArticleType>>("http://localhost:3000/api/v1/articles")
+      .get<Array<ArticleType>>("http://localhost:3000/api/v1/favorites")
       .then((res) => {
         const data = res.data.map((article) => ({
           twitter_id: article.twitter_id,
@@ -32,5 +32,5 @@ export const usePullArticles = () => {
       });
   };
 
-  return { pullArticles, articles, loading, error };
+  return { pullFavorites, articles, loading, error };
 };

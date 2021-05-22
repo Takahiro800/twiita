@@ -8,8 +8,9 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    tweets = @twitter_client.favorites({count: 10, tweet_mode: "extended"})
-    Article.fetch_tweets(tweets)
+    tweets = @twitter_client.home_timeline({count: 10, tweet_mode: "extended"})
+    pull_tweets = Article.pull_tweets(tweets)
+    render json: pull_tweets
   end
 
   def destroy

@@ -13,7 +13,6 @@ class Article < ApplicationRecord
         pull_tweets.push(article)
       end
     end
-    binding.pry
     return pull_tweets
   end
 

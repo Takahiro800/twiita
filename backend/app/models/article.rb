@@ -11,7 +11,6 @@ class Article < ApplicationRecord
         article.origin_context = tweet.full_text
         article.origin_user = tweet.user.name
         pull_tweets.push(article)
-
       end
     end
     return pull_tweets

@@ -1,9 +1,9 @@
 import { memo, VFC } from "react";
-import { Article } from "../types/api/article";
+import { ArticleType } from "../types/api/articleType";
 
-type Props = {
-  articles: Article[];
-};
+// type Props = {
+// articles: ArticleType[];
+// };
 
 // export const ArticleList: VFC<Props> = memo((props) => {
 //   const { articles } = props;

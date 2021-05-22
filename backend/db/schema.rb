@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_204306) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.string "tiwtter_id"
+    t.string "twitter_id"
     t.string "origin_user"
     t.string "origin_link"
     t.string "origin_context"

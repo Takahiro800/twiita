@@ -16,9 +16,21 @@ export default function App() {
       });
   };
 
+  const createArticles = () => {
+    axios
+      .post("http://localhost:3000/api/v1/articles")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <ChakraProvider theme={theme}>
-      <button onClick={onClickArticles}>articles</button>
+      <button onClick={onClickArticles}>index</button>
+      <button onClick={createArticles}>create</button>
       <BrowserRouter>
         <Router />
       </BrowserRouter>

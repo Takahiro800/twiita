@@ -2,17 +2,14 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :set_twitter_client, only: [:create, :index]
 
   def index
-    @articles = @twitter_client.favorites({count: 10, tweet_mode: "extend"})
-    render json: @articles
+    render json: Article.all
+
+    # render json: @articles
   end
 
   def create
     tweets = @twitter_client.favorites({count: 10, tweet_mode: "extend"})
-    Article.find_or_create_by(app: "twitter", twitter_id: tweet.id) do |article|
-      article.origin_link = tweet.uri
-      article.origin_context = tweet.full_text
-      article.origin_user = tweet.user.name
-    end
+    Article.fetch_tweets(tweets)
   end
 
   def destroy

@@ -2,13 +2,13 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :set_twitter_client, only: [:create, :index]
 
   def index
-    tweets = @twitter_client.favorites({count: 10, tweet_mode: "extend"})
+    tweets = @twitter_client.favorites({count: 10, tweet_mode: "extended"})
     pull_tweets =  Article.pull_tweets(tweets)
     render json: pull_tweets
   end
 
   def create
-    tweets = @twitter_client.favorites({count: 10, tweet_mode: "extend"})
+    tweets = @twitter_client.favorites({count: 10, tweet_mode: "extended"})
     Article.fetch_tweets(tweets)
   end
 

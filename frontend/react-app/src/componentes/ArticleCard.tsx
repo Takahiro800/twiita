@@ -1,5 +1,7 @@
+import { Box, Container } from "@chakra-ui/layout";
 import { VFC } from "react";
 import { ArticleType } from "../types/api/articleType";
+import { Link } from "@chakra-ui/react";
 
 type Props = {
   article: ArticleType;
@@ -8,23 +10,14 @@ type Props = {
 export const ArticleCard: VFC<Props> = (props) => {
   const { article } = props;
 
-  const style = {
-    border: "solid 1px #ccc",
-    borderRadius: "8px",
-    padding: "0 16px",
-    margin: "8px",
-  };
-
   return (
-    <div style={style}>
-      <dl>
-        <dt>twitter id</dt>
-        <dd>{article.twitter_id}</dd>
-        <dt>origin link</dt>
-        <dd>{article.origin_link}</dd>
-        <dt>origin context</dt>
+    <Container m="10px">
+      <Box bg="orange.100" borderRadius="20px" p="20px">
         <dd>{article.origin_context}</dd>
-      </dl>
-    </div>
+        <Link color="teal.500" href={article.origin_link} ml="auto" isExternal>
+          オリジナルへ移動する
+        </Link>
+      </Box>
+    </Container>
   );
 };

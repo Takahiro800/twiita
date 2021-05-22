@@ -4,8 +4,8 @@ class CreateArticles < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :twitter_id
       t.string :origin_user
-      t.string :origin_link
-      t.string :origin_context
+      t.text :origin_link
+      t.text :origin_context
 
       t.timestamps
     end

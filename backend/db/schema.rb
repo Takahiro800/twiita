@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2021_05_17_204306) do
     t.string "title"
     t.string "twitter_id"
     t.string "origin_user"
-    t.string "origin_link"
-    t.string "origin_context"
+    t.text "origin_link"
+    t.text "origin_context"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

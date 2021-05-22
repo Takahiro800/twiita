@@ -2,9 +2,9 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :set_twitter_client, only: [:create, :index]
 
   def index
-    render json: Article.all
-
-    # render json: @articles
+    tweets = @twitter_client.favorites({count: 10, tweet_mode: "extend"})
+    pull_tweets =  Article.pull_tweets(tweets)
+    render json: pull_tweets
   end
 
   def create

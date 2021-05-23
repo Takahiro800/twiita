@@ -1,19 +1,18 @@
-import axios from "axios";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { ArticleType } from "../../types/api/articleType";
+import axios from "axios";
 
-export const usePullFavorites = () => {
+export const usePullTimelines = () => {
   const [articles, setArticles] = useState<Array<ArticleType>>([]);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const pullFavorites = () => {
+  const pullTimelines = useCallback(() => {
     setLoading(true);
     setError(false);
 
     axios
-      .get<Array<ArticleType>>("http://localhost:3000/api/v1/favorites")
+      .get<Array<ArticleType>>("http://localhost:3000/api/v1/timelines")
       .then((res) => {
         const data = res.data.map((article) => ({
           twitter_id: article.twitter_id,
@@ -29,7 +28,7 @@ export const usePullFavorites = () => {
       .finally(() => {
         setLoading(false);
       });
-  };
+  }, []);
 
-  return { pullFavorites, articles, loading, error };
+  return { pullTimelines, articles, loading, error };
 };

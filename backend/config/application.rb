@@ -23,7 +23,13 @@ module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    g.test_framework :rspec
+    config.generators do |g|
+      g.template_engine false
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+      g.test_framework :rspec
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

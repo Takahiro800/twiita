@@ -1,6 +1,5 @@
 import { memo, VFC } from "react";
 import { Route, Switch } from "react-router";
-import { Home } from "../componentes/pages/Home";
 import { Page404 } from "../componentes/pages/Page404";
 import { Top } from "../componentes/pages/Top";
 import { HeaderLayout } from "../componentes/templates/HeaderLayout";

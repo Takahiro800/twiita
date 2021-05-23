@@ -15,7 +15,12 @@ export const homeRoutes = [
     children: <ArticleDetail />,
   },
   {
-    path: "/setting",
+    path: "/timeline",
+    exact: false,
+    children: <Setting />,
+  },
+  {
+    path: "/favorites",
     exact: false,
     children: <Setting />,
   },

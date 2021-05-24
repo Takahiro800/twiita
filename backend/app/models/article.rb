@@ -16,6 +16,22 @@ class Article < ApplicationRecord
     return pull_tweets
   end
 
+  def self.pull_timelines(tweets, count)
+    pull_tweets = []
+
+    tweets.each do |tweet|
+      if tweet.favorite_count >= count
+        article = Article.new
+        article.origin_link = tweet.uri
+        article.origin_context = tweet.full_text
+        article.origin_user = tweet.user.name
+        pull_tweets.push(article)
+        puts tweet.favorite_count
+      end
+    end
+    return pull_tweets
+  end
+
   def self.fetch_tweets(tweets)
     tweets.reverse_each do |tweet|
       Article.find_or_create_by(twitter_id: tweet.id) do |article|

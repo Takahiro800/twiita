@@ -5,6 +5,8 @@ import { CreateArticleButton } from "./atom/button/CreateArticleButton";
 import axios from "axios";
 import { IconButton } from "@chakra-ui/button";
 import { CheckIcon } from "@chakra-ui/icons";
+import { useMessage } from "./hooks/useMessage";
+import { title } from "process";
 
 type Props = {
   article: ArticleType;
@@ -12,12 +14,16 @@ type Props = {
 
 export const ArticleCard: VFC<Props> = memo((props) => {
   const { article } = props;
+  const { showMessage } = useMessage();
 
   const createArticle = () => {
     axios
       .post<ArticleType>("http://localhost:3000/api/v1/articles", { article })
       .then((res) => {
+        showMessage({ title: "保存しました", status: "success" });
         console.log("success!!");
+        console.log(res.data);
+        console.log(res.data.id);
       })
       .catch((err) => {
         console.log("error");

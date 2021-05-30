@@ -1,15 +1,18 @@
 import { Box, Container, Link } from "@chakra-ui/layout";
-import { memo, useState, VFC } from "react";
+import { memo, VFC } from "react";
 import { ArticleType } from "../types/api/articleType";
-import { CreateArticleButton } from "./atom/button/CreateArticleButton";
 import axios from "axios";
 import { IconButton } from "@chakra-ui/button";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useMessage } from "./hooks/useMessage";
-import { title } from "process";
 
 type Props = {
   article: ArticleType;
+};
+
+type ResponseType = {
+  message: string;
+  status: "info" | "warning" | "success" | "error";
 };
 
 export const ArticleCard: VFC<Props> = memo((props) => {
@@ -18,15 +21,13 @@ export const ArticleCard: VFC<Props> = memo((props) => {
 
   const createArticle = () => {
     axios
-      .post<ArticleType>("http://localhost:3000/api/v1/articles", { article })
+      .post<ResponseType>("http://localhost:3000/api/v1/articles", { article })
       .then((res) => {
-        showMessage({ title: "保存しました", status: "success" });
-        console.log("success!!");
-        console.log(res.data);
-        console.log(res.data.id);
+        showMessage({ title: res.data.message, status: res.data.status });
       })
       .catch((err) => {
-        console.log("error");
+        console.log(err);
+        showMessage({ title: "errorです", status: "error" });
       });
   };
 

@@ -7,8 +7,11 @@ class Api::V1::ArticlesController < ApplicationController
 
   def create
     article = Article.create(article_params)
-    # これ不要な可能性ある
-    render json: article
+    if article.valid?
+      render json: {status: 'success', message: '保存しました'}
+    else
+      render json: {status: 'info', message: "保存済みです"}
+    end
   end
 
   def destroy
@@ -18,7 +21,7 @@ class Api::V1::ArticlesController < ApplicationController
   private
 
     def article_params
-      params.require(:article).permit(:origin_link, :origin_context, :origin_user)
+      params.require(:article).permit(:origin_link, :origin_context, :origin_user, :twitter_id)
     end
 
 end

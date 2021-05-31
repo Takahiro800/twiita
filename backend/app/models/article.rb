@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   validates :origin_context, :origin_link, presence: true
+  validates :twitter_id, uniqueness: true
 
   def self.pull_tweets(tweets)
     pull_tweets = []
@@ -7,6 +8,7 @@ class Article < ApplicationRecord
     tweets.reverse_each do |tweet|
       # もし存在したら、そのオブジェクトは返さない
       Article.find_or_initialize_by(twitter_id: tweet.id) do |article|
+        article.twitter_id = tweet.id
         article.origin_link = tweet.uri
         article.origin_context = tweet.full_text
         article.origin_user = tweet.user.name
@@ -22,6 +24,7 @@ class Article < ApplicationRecord
     tweets.each do |tweet|
       if tweet.favorite_count >= count
         article = Article.new
+        article.twitter_id = tweet.id
         article.origin_link = tweet.uri
         article.origin_context = tweet.full_text
         article.origin_user = tweet.user.name

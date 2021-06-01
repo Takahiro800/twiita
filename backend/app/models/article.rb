@@ -45,4 +45,9 @@ class Article < ApplicationRecord
     end
   end
 
+  def self.search(search_word)
+    return Article.all unless search_word
+    return Article.where(['origin_content LIKE ?', "%#{search_word}%"])
+  end
+
 end

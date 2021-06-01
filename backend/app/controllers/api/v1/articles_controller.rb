@@ -21,7 +21,6 @@ class Api::V1::ArticlesController < ApplicationController
   def search
     @search_params = article_search_params
     @articles = Article.search(@search_params[:name])
-    binding.pry
     render json: @articles
   end
 

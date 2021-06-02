@@ -19,6 +19,8 @@ export const useSearch = () => {
           origin_link: article.origin_link,
           origin_context: article.origin_context,
         }));
+        console.log(`${keyword}の検索結果です`);
+        console.log(data);
         setArticles(data);
       })
       .catch((err) => {

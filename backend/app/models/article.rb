@@ -5,13 +5,14 @@ class Article < ApplicationRecord
   def self.pull_tweets(tweets)
     pull_tweets = []
 
-    tweets.reverse_each do |tweet|
+    tweets.each do |tweet|
       # もし存在したら、そのオブジェクトは返さない
       Article.find_or_initialize_by(twitter_id: tweet.id) do |article|
         article.twitter_id = tweet.id
         article.origin_link = tweet.uri
         article.origin_context = tweet.full_text
         article.origin_user = tweet.user.name
+        article.icon_url = tweet.user.profile_image_url_https
         pull_tweets.push(article)
       end
     end
@@ -28,6 +29,7 @@ class Article < ApplicationRecord
         article.origin_link = tweet.uri
         article.origin_context = tweet.full_text
         article.origin_user = tweet.user.name
+        article.icon_url = tweet.user.profile_image_url_https
         pull_tweets.push(article)
         puts tweet.favorite_count
       end
@@ -41,6 +43,7 @@ class Article < ApplicationRecord
         article.origin_link = tweet.uri
         article.origin_context = tweet.full_text
         article.origin_user = tweet.user.name
+        article.icon_url = tweet.user.profile_image_url_https
       end
     end
   end

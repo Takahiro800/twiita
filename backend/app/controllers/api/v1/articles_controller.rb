@@ -20,14 +20,14 @@ class Api::V1::ArticlesController < ApplicationController
 
   def search
     @search_params = article_search_params
-    @articles = Article.search(@search_params[:name])
+    @articles = Article.search(@search_params[:keyword])
     render json: @articles
   end
 
   private
 
   def article_search_params
-    params.fetch(:search, {}).permit(:name)
+    params.permit(:keyword)
   end
 
 end

@@ -5,6 +5,7 @@ import axios from "axios";
 import { IconButton } from "@chakra-ui/button";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useMessage } from "./hooks/useMessage";
+import { Image } from "@chakra-ui/image";
 
 type Props = {
   article: ArticleType;
@@ -34,6 +35,7 @@ export const ArticleCard: VFC<Props> = memo((props) => {
   return (
     <Container m="10px">
       <Box as="form" bg="orange.100" borderRadius="20px" p="20px">
+        <Image borderRadius="full" boxSize="30px" src={article.icon_url} alt="user_icon" />
         <dd>{article.origin_context}</dd>
         <Link color="teal.500" href={article.origin_link} ml="auto" isExternal>
           オリジナルへ移動する

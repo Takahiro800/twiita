@@ -18,6 +18,7 @@ export const usePullTimelines = () => {
           twitter_id: article.twitter_id,
           origin_link: article.origin_link,
           origin_context: article.origin_context,
+          icon_url: article.icon_url,
         }));
         setArticles(data);
       })

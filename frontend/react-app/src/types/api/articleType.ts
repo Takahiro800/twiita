@@ -4,4 +4,5 @@ export type ArticleType = {
   twitter_id: string;
   origin_link: string;
   origin_context: string;
+  icon_url: string;
 };

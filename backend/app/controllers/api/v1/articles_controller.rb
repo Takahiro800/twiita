@@ -26,6 +26,10 @@ class Api::V1::ArticlesController < ApplicationController
 
   private
 
+  def article_params
+    params.require(:article).permit(:twitter_id, :origin_link, :origin_context,:icon_url)
+  end
+
   def article_search_params
     params.permit(:keyword)
   end

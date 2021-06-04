@@ -12,10 +12,6 @@ export default function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <button onClick={onClickPullFavorites}>index</button>
-      <br />
-      {/* <button onClick={createArticles}>create</button> */}
-      <br />
       {error ? (
         <p style={{ color: "red" }}>データの取得に失敗しました</p>
       ) : loading ? (

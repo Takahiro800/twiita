@@ -1,4 +1,4 @@
-import { Box, Container, Link } from "@chakra-ui/layout";
+import { Box, Center, Container, Link } from "@chakra-ui/layout";
 import { memo, VFC } from "react";
 import { ArticleType } from "../types/api/articleType";
 import axios from "axios";
@@ -33,17 +33,19 @@ export const ArticleCard: VFC<Props> = memo((props) => {
   };
 
   return (
-    <Container m="10px">
-      <Box as="form" bg="orange.100" borderRadius="20px" p="20px">
-        <Image borderRadius="full" boxSize="30px" src={article.icon_url} alt="user_icon" />
-        <dd>{article.origin_context}</dd>
-        <Link color="teal.500" href={article.origin_link} ml="auto" isExternal>
-          オリジナルへ移動する
-        </Link>
-        <p>{article.twitter_id}</p>
-        {/* ここにボタンを追加する */}
-        <IconButton aria-label="保存ボタン" icon={<CheckIcon />} size="sm" onClick={createArticle} />
-      </Box>
-    </Container>
+    <Center>
+      <Container w="xl" m="10px">
+        <Box as="form" bg="orange.100" borderRadius="20px" p="20px">
+          <Image borderRadius="full" boxSize="30px" src={article.icon_url} alt="icon" />
+          <dd>{article.origin_context}</dd>
+          <Link color="teal.500" href={article.origin_link} ml="auto" isExternal>
+            オリジナルへ移動する
+          </Link>
+          <p>{article.twitter_id}</p>
+          {/* ここにボタンを追加する */}
+          <IconButton aria-label="保存ボタン" icon={<CheckIcon />} size="sm" onClick={createArticle} />
+        </Box>
+      </Container>
+    </Center>
   );
 });

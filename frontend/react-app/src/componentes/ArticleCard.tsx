@@ -1,12 +1,14 @@
 import { Box, Center, Container, Link } from "@chakra-ui/layout";
 import { memo, VFC } from "react";
+import { HiOutlineSave } from "react-icons/hi";
 import { ArticleType } from "../types/api/articleType";
 import axios from "axios";
 import { IconButton } from "@chakra-ui/button";
-import { CheckIcon } from "@chakra-ui/icons";
+import { CheckIcon, Icon } from "@chakra-ui/icons";
 import { useMessage } from "./hooks/useMessage";
 import { Image } from "@chakra-ui/image";
 import { ArticleText } from "./atom/text/ArticleText";
+import { TwitterButton } from "./atom/button/TwitterButton";
 
 type Props = {
   article: ArticleType;
@@ -40,10 +42,18 @@ export const ArticleCard: VFC<Props> = memo((props) => {
           <Image borderRadius="full" boxSize="30px" src={article.icon_url} alt="icon" />
           <ArticleText str={article.origin_context} />
           <br />
-          <Link color="teal.500" href={article.origin_link} ml="auto" isExternal>
-            オリジナルへ移動する
+          <IconButton
+            aria-label="保存ボタン"
+            backgroundColor="transparent"
+            icon={<HiOutlineSave />}
+            onClick={createArticle}
+            w={8}
+            h={8}
+          />
+          <Link color="teal.500" href={article.origin_link} ml="1em" isExternal>
+            <TwitterButton />
+            {/* オリジナルへ移動する */}
           </Link>
-          <IconButton aria-label="保存ボタン" icon={<CheckIcon />} size="sm" onClick={createArticle} />
         </Box>
       </Container>
     </Center>

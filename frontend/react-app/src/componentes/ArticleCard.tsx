@@ -39,10 +39,10 @@ export const ArticleCard: VFC<Props> = memo((props) => {
         <Box as="form" bg="orange.100" borderRadius="20px" p="20px">
           <Image borderRadius="full" boxSize="30px" src={article.icon_url} alt="icon" />
           <ArticleText str={article.origin_context} />
+          <br />
           <Link color="teal.500" href={article.origin_link} ml="auto" isExternal>
             オリジナルへ移動する
           </Link>
-          <p>{article.twitter_id}</p>
           <IconButton aria-label="保存ボタン" icon={<CheckIcon />} size="sm" onClick={createArticle} />
         </Box>
       </Container>

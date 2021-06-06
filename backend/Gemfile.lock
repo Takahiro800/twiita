@@ -314,6 +314,7 @@ DEPENDENCIES
   faker
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
+  omniauth
   omniauth-twitter
   pry-byebug
   puma (~> 4.1)

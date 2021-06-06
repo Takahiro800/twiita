@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+        include DeviseTokenAuth::Concerns::SetUserByToken
   private
 
   def set_twitter_client

@@ -30,7 +30,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'mysql2', '>= 0.4.4'
+  gem 'pg', '>= 0.4.4'
 end
 
 group :development do
@@ -42,9 +42,9 @@ group :development do
   gem 'solargraph'
 end
 
-group :production do
-  gem "pg"
-end
+# group :production do
+#   gem "pg"
+# end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

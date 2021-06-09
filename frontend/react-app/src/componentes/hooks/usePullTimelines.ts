@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { ArticleType } from "../../types/api/articleType";
-import axios from "axios";
+import { Axios } from "../../Axios";
 
 export const usePullTimelines = () => {
   const [articles, setArticles] = useState<Array<ArticleType>>([]);
@@ -11,8 +11,7 @@ export const usePullTimelines = () => {
     setLoading(true);
     setError(false);
 
-    axios
-      .get<Array<ArticleType>>("http://localhost:3000/api/v1/timelines")
+    Axios.get<Array<ArticleType>>("/api/v1/timelines")
       .then((res) => {
         const data = res.data.map((article) => ({
           twitter_id: article.twitter_id,

@@ -9,6 +9,7 @@ import { useMessage } from "./hooks/useMessage";
 import { Image } from "@chakra-ui/image";
 import { ArticleText } from "./atom/text/ArticleText";
 import { TwitterButton } from "./atom/button/TwitterButton";
+import { Axios } from "../Axios";
 
 type Props = {
   article: ArticleType;
@@ -24,8 +25,8 @@ export const ArticleCard: VFC<Props> = memo((props) => {
   const { showMessage } = useMessage();
 
   const createArticle = () => {
-    axios
-      .post<ResponseType>("http://localhost:3000/api/v1/articles", { article })
+    // axios.post<ResponseType>("http://localhost:3000/api/v1/articles", { article });
+    Axios.post<ResponseType>("/api/v1/articles", { article })
       .then((res) => {
         showMessage({ title: res.data.message, status: res.data.status });
       })

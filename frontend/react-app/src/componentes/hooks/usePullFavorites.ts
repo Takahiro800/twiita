@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
+import { Axios } from "../../Axios";
 import { ArticleType } from "../../types/api/articleType";
 
 export const usePullFavorites = () => {
@@ -12,8 +12,7 @@ export const usePullFavorites = () => {
     setLoading(true);
     setError(false);
 
-    axios
-      .get<Array<ArticleType>>("http://localhost:3000/api/v1/favorites")
+    Axios.get<Array<ArticleType>>("/api/v1/favorites")
       .then((res) => {
         const data = res.data.map((article) => ({
           twitter_id: article.twitter_id,
@@ -26,6 +25,7 @@ export const usePullFavorites = () => {
       .catch((err) => {
         setError(true);
         console.log(err);
+        console.log("env変数");
       })
       .finally(() => {
         setLoading(false);

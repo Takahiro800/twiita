@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
+import { Axios } from "../../Axios";
 import { ArticleType } from "../../types/api/articleType";
 
 export const useSearch = () => {
@@ -7,12 +8,11 @@ export const useSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const search = useCallback((keyword: string) => {
-    axios
-      .get<ArticleType[]>("http://localhost:3000/api/v1/articles/search", {
-        params: {
-          keyword: keyword,
-        },
-      })
+    Axios.get<ArticleType[]>("http://localhost:3000/api/v1/articles/search", {
+      params: {
+        keyword: keyword,
+      },
+    })
       .then((res) => {
         const data = res.data.map((article) => ({
           twitter_id: article.twitter_id,

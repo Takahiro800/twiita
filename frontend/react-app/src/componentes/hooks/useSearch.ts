@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useCallback, useState } from "react";
 import { Axios } from "../../Axios";
 import { ArticleType } from "../../types/api/articleType";

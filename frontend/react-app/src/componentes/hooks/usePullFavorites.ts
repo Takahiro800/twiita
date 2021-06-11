@@ -27,6 +27,7 @@ export const usePullFavorites = () => {
         setError(true);
         console.log(err);
         console.log("env変数");
+        console.log(process.env.REACT_APP_AXIOS_BASE_URL);
       })
       .finally(() => {
         setLoading(false);

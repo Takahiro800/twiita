@@ -21,6 +21,7 @@ export const usePullFavorites = () => {
           icon_url: article.icon_url,
         }));
         setArticles(data);
+        console.log(process.env.REACT_APP_AXIOS_BASE_URL);
       })
       .catch((err) => {
         setError(true);

@@ -40,16 +40,12 @@ module Myapp
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
-    config.session_store :cookie_store, key: '_interslice_session' #追記
+    config.session_store :cookie_store, key: '_session_mechaco' #追記
     config.middleware.use ActionDispatch::Cookies # Required for all session management #追記
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options #追記
-
-        # 主にdeviseを使うのに必要
     config.middleware.use Rack::MethodOverride
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
-    config.middleware.use ActionDispatch::Flash
+	config.middleware.use ActionDispatch::Flash
+
 
   end
 end

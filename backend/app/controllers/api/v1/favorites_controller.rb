@@ -1,5 +1,6 @@
 class Api::V1::FavoritesController < ApplicationController
   before_action :set_twitter_client, only: [:index]
+	# before_action :authenticate_user!, only: [:index]
 
   def index
     tweets = @twitter_client.favorites({count: 200, tweet_mode: "extended"})

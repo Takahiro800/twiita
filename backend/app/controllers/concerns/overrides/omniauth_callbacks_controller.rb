@@ -3,7 +3,6 @@ module Overrides
 	class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
 
 		def omniauth_success
-			binding.pry
 			super
 			update_auth_header
 		end

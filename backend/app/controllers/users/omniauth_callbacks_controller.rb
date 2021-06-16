@@ -1,5 +1,5 @@
 # module Users
-  class Users::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+  class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		# def omniauth_success
 		# 	super
 		# 	binding.pry
@@ -16,6 +16,16 @@
 		def redirect_callbacks
 			super
 		end
+
+		def passthru
+			binding.pry
+			super
+		end
+
+		def twitter
+			binding.pry
+		end
+
 
 		def omniauth_success
 			super

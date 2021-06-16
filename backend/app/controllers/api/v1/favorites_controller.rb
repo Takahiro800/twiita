@@ -3,7 +3,6 @@ class Api::V1::FavoritesController < ApplicationController
   before_action :set_twitter_client, only: [:index]
 
   def index
-		binding.pry
     tweets = @twitter_client.favorites({count: 200, tweet_mode: "extended"})
     pull_tweets =  Article.pull_tweets(tweets)
     render json: pull_tweets

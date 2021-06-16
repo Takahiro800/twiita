@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:twitter, :pocket]
   include DeviseTokenAuth::Concerns::User
 
+	devise :omniauthable, omniauth_providers: [:twitter]
+
 end

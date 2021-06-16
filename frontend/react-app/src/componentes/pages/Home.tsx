@@ -3,23 +3,24 @@ import { Button, ChakraProvider, Flex, Input, InputGroup, InputLeftElement } fro
 import { ChangeEvent, memo, useEffect, useState, VFC } from "react";
 import theme from "../../theme/theme";
 import { ArticleCard } from "../ArticleCard";
-import { SearchInput } from "../atom/input/SearchInput";
 import { useSearch } from "../hooks/useSearch";
 
 export const Home: VFC = memo(() => {
   const { search, articles, loading, error } = useSearch();
-
   const onClickSearch = (keyword: string) => search(keyword);
 
   useEffect(() => onClickSearch(""), []);
 
   const [keyWord, setKeyWord] = useState<string>("");
-
   const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) => setKeyWord(e.target.value);
+
+  const [loggedInStatus, setLoggedInStatus] = useState<string>("まだです");
 
   return (
     <>
       <p>HOMEページです</p>
+      <p>ログイン状態</p>
+      <p>{loggedInStatus}</p>
       <Flex justifyContent="center">
         <InputGroup>
           <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300" />} />

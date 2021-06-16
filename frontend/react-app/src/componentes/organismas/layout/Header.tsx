@@ -5,6 +5,7 @@ import { Box, Flex, Heading, Link } from "@chakra-ui/layout";
 import { MenuIconButton } from "../../atom/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 import { useHistory } from "react-router";
+import { useAuthTwitter } from "../../hooks/useAuthTwitter";
 
 export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -13,6 +14,9 @@ export const Header: VFC = memo(() => {
   const onClickHome = useCallback(() => history.push("/home"), [history]);
   const onClickTimeline = useCallback(() => history.push("/home/timeline"), [history]);
   const onClickFavorites = useCallback(() => history.push("/home/favorites"), [history]);
+
+  const { authTwitter } = useAuthTwitter();
+  const onClickAuthTwitter = () => authTwitter();
 
   return (
     <>
@@ -26,7 +30,12 @@ export const Header: VFC = memo(() => {
           <Box pr={4}>
             <Link onClick={onClickTimeline}>TimeLine</Link>
           </Box>
-          <Link onClick={onClickFavorites}>Favorites</Link>
+          <Box pr={4}>
+            <Link onClick={onClickFavorites}>Favorites</Link>
+          </Box>
+          <Box pr={4}>
+            <Link onClick={onClickAuthTwitter}>twitter認証</Link>
+          </Box>
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>

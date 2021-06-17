@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index]
       resources :timelines, only: [:index]
 			get '/auth_test', to: 'auth_test#index'
+			get '/get_oauth_twitter_url', to: 'auth_test#get_twitter_oauth_url'
+			get '/oauth_twitter', to: 'auth_test#twitter'
     end
   end
 end

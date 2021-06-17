@@ -13,6 +13,7 @@
 		# end
 		# skip_before_action :skip_session
 
+
 		def redirect_callbacks
 			super
 		end

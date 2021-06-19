@@ -44,7 +44,6 @@ module Myapp
     config.middleware.use ActionDispatch::Cookies # Required for all session management #追記
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options #追記
     config.middleware.use Rack::MethodOverride
-		config.middleware.use ActionDispatch::Flash
 
 		config.middleware.insert_before 0, Rack::Cors do
 			allow do

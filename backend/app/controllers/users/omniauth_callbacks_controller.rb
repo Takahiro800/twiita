@@ -36,6 +36,7 @@
 		end
 
 		def omniauth_failure
+			binding.pry
 			super
 		end
 

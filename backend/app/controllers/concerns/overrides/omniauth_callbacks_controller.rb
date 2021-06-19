@@ -1,13 +1,24 @@
 module Overrides
 
 	class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+		include ActionView::Rendering
 		def omniauth_success
 			super
 			update_auth_header
 		end
 
+		def omniauth_failure
+			binding.pry
+			super
+		end
+
 		def twitter
 			callback_form :twitter
+		end
+
+		def redirect_callbacks
+			binding.pry
+			super
 		end
 
 		private

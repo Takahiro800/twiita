@@ -1,7 +1,9 @@
 require 'oauth'
 
+# class Api::V1::AuthTestController < ApplicationController
 class Api::V1::AuthTestController < ApplicationController
 	include ActionController::Cookies
+	include DeviseTokenAuth
 	before_action :authenticate_user!, only: :index
 
 	def index
@@ -19,6 +21,7 @@ class Api::V1::AuthTestController < ApplicationController
 		request_token = consumer.get_request_token(
 			# :oauth_callback => "http://localhost:3000/api/v1/auth/twitter/callback"
 			:oauth_callback => "http://localhost:3000/api/v1/oauth_twitter"
+			# :oauth_callback => "http://localhost:3000/omniauth/twitter/callback"
 		)
 
 
@@ -33,7 +36,6 @@ class Api::V1::AuthTestController < ApplicationController
 	end
 
 	def twitter
-		binding.pry
 		consumer = OAuth::Consumer.new(
 			ENV['TWITTER_API_KEY'],
 			ENV['TWITTER_SECRET_API_KEY'],
@@ -66,16 +68,21 @@ class Api::V1::AuthTestController < ApplicationController
     when Net::HTTPSuccess
       user_info = JSON.parse(response.body)
 
+
       if user_info["screen_name"]
         cookies[:oauth_token] = params[:oauth_token]
         cookies[:twitter_uid] = user_info["id"]
         cookies[:screen_name] = user_info["screen_name"]
-      else
+      # else
         #"Authentication failed"
       end
-    else
+    # else
         #"Failed to get user info via OAuth"
     end
-		binding.pry
+		render json: "認証完了"
 	end
+
+
+	private
+
 end

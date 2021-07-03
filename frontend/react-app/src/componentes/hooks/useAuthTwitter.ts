@@ -4,12 +4,12 @@ import { Axios } from "../../Axios";
 export const useAuthTwitter = () => {
   const history = useHistory();
 
-  const CheckLoginStatusTwitter = (window: Window | null) => {
+  const CheckLoginStatusTwitter = (window: Window | null, text: string) => {
     if (window!.closed) {
-      alert("test");
+      alert(text);
     } else {
       setTimeout(function () {
-        CheckLoginStatusTwitter(window);
+        CheckLoginStatusTwitter(window, text);
       }, 1000);
     }
   };
@@ -19,16 +19,16 @@ export const useAuthTwitter = () => {
       withCredentials: true,
     })
       .then((res) => {
+        console.log(res);
         const windowLogin = window.open(res.data.oauth_url);
-        CheckLoginStatusTwitter(windowLogin);
-
-        window.focus();
+        CheckLoginStatusTwitter(windowLogin, res.data);
       })
       .catch((err) => {
         console.log("error!!!!!!!!!!!!");
         console.log(err);
       })
       .finally(() => {
+        window.focus();
         history.push("/home");
       });
   };

@@ -2,6 +2,7 @@ import { memo, VFC } from "react";
 import { Route, Switch } from "react-router";
 import { Home } from "../componentes/pages/Home";
 import { Page404 } from "../componentes/pages/Page404";
+import { Root } from "../componentes/pages/Root";
 import { Timeline } from "../componentes/pages/Timeline";
 import { HeaderLayout } from "../componentes/templates/HeaderLayout";
 import { homeRoutes } from "./HomeRoutes";
@@ -10,7 +11,7 @@ export const Router: VFC = memo(() => {
   return (
     <Switch>
       <Route exact path="/">
-        <Home />
+        <Root />
       </Route>
       <Route
         path="/home"

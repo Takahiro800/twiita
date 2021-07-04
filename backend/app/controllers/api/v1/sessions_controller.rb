@@ -11,7 +11,6 @@ class Api::V1::SessionsController < ApplicationController
 	end
 
 	def destroy
-		binding.pry
 		log_out if logged_in?
 		render json: "ログアウト完了しました"
 	end

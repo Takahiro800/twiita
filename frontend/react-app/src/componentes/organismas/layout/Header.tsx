@@ -6,6 +6,7 @@ import { MenuIconButton } from "../../atom/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 import { useHistory } from "react-router";
 import { useAuthTwitter } from "../../hooks/useAuthTwitter";
+import { useLogout } from "../../hooks/useLogout";
 
 export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -14,6 +15,9 @@ export const Header: VFC = memo(() => {
   const onClickHome = useCallback(() => history.push("/home"), [history]);
   const onClickTimeline = useCallback(() => history.push("/home/timeline"), [history]);
   const onClickFavorites = useCallback(() => history.push("/home/favorites"), [history]);
+
+  const { logout } = useLogout();
+  const onClickLogoust = () => logout();
 
   const { authTwitter } = useAuthTwitter();
   const onClickAuthTwitter = () => authTwitter();
@@ -33,8 +37,11 @@ export const Header: VFC = memo(() => {
           <Box pr={4}>
             <Link onClick={onClickFavorites}>Favorites</Link>
           </Box>
-          <Box pr={4}>
+          {/* <Box pr={4}>
             <Link onClick={onClickAuthTwitter}>twitter認証</Link>
+          </Box> */}
+          <Box pr={4}>
+            <Link onClick={onClickLogoust}>ログアウト</Link>
           </Box>
         </Flex>
         <MenuIconButton onOpen={onOpen} />

@@ -7,6 +7,7 @@ export const useAuthTwitter = () => {
   const CheckLoginStatusTwitter = (window: Window | null, text: string) => {
     if (window!.closed) {
       alert(text);
+      history.push("/home");
     } else {
       setTimeout(function () {
         CheckLoginStatusTwitter(window, text);
@@ -29,7 +30,6 @@ export const useAuthTwitter = () => {
       })
       .finally(() => {
         window.focus();
-        history.push("/home");
       });
   };
 

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 			get '/auth_test', to: 'auth_test#index'
 			get '/get_oauth_twitter_url', to: 'auth_test#get_twitter_oauth_url'
 			get '/oauth_twitter', to: 'auth_test#twitter'
+			delete '/logout', to: 'sessions#destroy'
     end
   end
 end

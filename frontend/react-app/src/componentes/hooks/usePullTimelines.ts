@@ -11,7 +11,9 @@ export const usePullTimelines = () => {
     setLoading(true);
     setError(false);
 
-    Axios.get<Array<ArticleType>>("/api/v1/timelines")
+    Axios.get<Array<ArticleType>>("/api/v1/timelines", {
+      withCredentials: true,
+    })
       .then((res) => {
         const data = res.data.map((article) => ({
           twitter_id: article.twitter_id,

@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
 		user = find_by(provider: provider, uid: uid)
 
 		unless user
-			binding.pry
 			user = User.new(
 			# user = new(
 				provider: provider,

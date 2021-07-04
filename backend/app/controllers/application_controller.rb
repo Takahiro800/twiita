@@ -13,14 +13,12 @@ class ApplicationController < ActionController::API
 
   def set_twitter_client
 		current_user
-		binding.pry
 		if logged_in?
 			twitter_client = Twitter::REST::Client.new do |config|
 				config.consumer_key = ENV['TWITTER_API_KEY']
 				config.consumer_secret = ENV['TWITTER_SECRET_API_KEY']
 				# config.access_token = ENV['TWITTER_ACCESS_TOKEN']
 				# config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
-				binding.pry
 				config.access_token = current_user.twitter_token
 				config.access_token_secret = current_user.twitter_secret
 			end

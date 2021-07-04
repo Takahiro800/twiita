@@ -2,7 +2,6 @@
   class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		# def omniauth_success
 		# 	super
-		# 	binding.pry
 		# 	callback_form :twitter
 		# end
 
@@ -19,12 +18,10 @@
 		end
 
 		def passthru
-			binding.pry
 			super
 		end
 
 		def twitter
-			binding.pry
 		end
 
 
@@ -36,7 +33,6 @@
 		end
 
 		def omniauth_failure
-			binding.pry
 			super
 		end
 

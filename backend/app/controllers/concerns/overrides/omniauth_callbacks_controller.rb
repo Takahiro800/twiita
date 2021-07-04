@@ -8,7 +8,6 @@ module Overrides
 		end
 
 		def omniauth_failure
-			binding.pry
 			super
 		end
 
@@ -17,7 +16,6 @@ module Overrides
 		end
 
 		def redirect_callbacks
-			binding.pry
 			super
 		end
 

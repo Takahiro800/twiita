@@ -24,21 +24,21 @@ class User < ActiveRecord::Base
 	# 	return user
 	# end
 
-	def self.find_or_create_from_access_token(provider,access_token)
-		user = find_by(provider: provider, uid: access_token.params["user_id"])
+	def self.find_or_create_from_access_token(provider,uid, token, secret)
+		user = find_by(provider: provider, uid: uid)
 
 		unless user
 			binding.pry
 			user = User.new(
 			# user = new(
 				provider: provider,
-				uid: access_token.params["user_id"],
+				uid: uid,
 				email: User.dummy_email,
 			)
 
 			if provider == "twitter"
-				user.twitter_token = access_token.token
-				user.twitter_secret = access_token.secret
+				user.twitter_token = token
+				user.twitter_secret = secret
 			end
 			user.save!
 		end

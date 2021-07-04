@@ -56,6 +56,11 @@ class Api::V1::AuthTestController < ApplicationController
       :oauth_token => params[:oauth_token],
       :oauth_verifier => params[:oauth_verifier]
     )
+		token = access_token.token
+		secret = access_token.secret
+		uid = access_token.params["user_id"]
+		binding.pry
+		user = User.find_or_create_from_access_token("twitter",uid, token, secret)
 
 
     response = consumer.request(
@@ -70,11 +75,11 @@ class Api::V1::AuthTestController < ApplicationController
 		# binding.pry
     case response
     when Net::HTTPSuccess
-      # user_info = JSON.parse(response.body)
-		# user = User.find_or_create_from_access_token(twitter, access_token)
-		user = User.first
+      user_info = JSON.parse(response.body)
+		# user = User.first
 		if user
 				log_in user
+				binding.pry
 
       # if user_info["screen_name"]
       #   cookies[:oauth_token] = params[:oauth_token]

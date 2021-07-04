@@ -7,14 +7,16 @@ class Api::V1::SessionsController < ApplicationController
 			redirect_to root_url
 		else
 			render 'new'
+		end
 	end
 
 	def destroy
+		binding.pry
 		log_out if logged_in?
 		render json: "ログアウト完了しました"
 	end
 
-	private
+	# private
 	 # 渡されたユーザーでログインする
 
 end

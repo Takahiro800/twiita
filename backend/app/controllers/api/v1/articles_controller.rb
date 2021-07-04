@@ -1,5 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_twitter_client, only: [:create, :index]
+	# before_action :logged_in_user, only:[:index, :create, :search]
 
   def index
     render json: Article.all

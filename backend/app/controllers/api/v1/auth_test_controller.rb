@@ -49,11 +49,14 @@ class Api::V1::AuthTestController < ApplicationController
       cookies[:request_token_secret]
     )
 
+
+
     access_token = request_token.get_access_token(
       {},
       :oauth_token => params[:oauth_token],
       :oauth_verifier => params[:oauth_verifier]
     )
+
 
     response = consumer.request(
       :get,
@@ -64,25 +67,32 @@ class Api::V1::AuthTestController < ApplicationController
 
     rtn = {}
 
+		# binding.pry
     case response
     when Net::HTTPSuccess
-      user_info = JSON.parse(response.body)
+      # user_info = JSON.parse(response.body)
+		# user = User.find_or_create_from_access_token(twitter, access_token)
+		user = User.first
+		if user
+				log_in user
 
-
-      if user_info["screen_name"]
-        cookies[:oauth_token] = params[:oauth_token]
-        cookies[:twitter_uid] = user_info["id"]
-        cookies[:screen_name] = user_info["screen_name"]
+      # if user_info["screen_name"]
+      #   cookies[:oauth_token] = params[:oauth_token]
+      #   cookies[:twitter_uid] = user_info["id"]
+      #   cookies[:screen_name] = user_info["screen_name"]
       # else
         #"Authentication failed"
-      end
+      # end
     # else
         #"Failed to get user info via OAuth"
+			render json: "認証完了が完了しました。この画面を閉じてください"
+		else
+			render json: "ログインできませんでした"
     end
-		render json: "認証完了"
 	end
 
 
-	private
+
+end
 
 end

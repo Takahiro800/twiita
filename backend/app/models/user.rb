@@ -9,6 +9,42 @@ class User < ActiveRecord::Base
 
 	devise :omniauthable, omniauth_providers: [:twitter]
 
+	# def self.test(provider,user_info)
+	# 	user = find_by(provider: provider, uid: user_info["uid"])
+
+	# 	unless user
+	# 		user = new(
+	# 			provider: provider
+	# 			uid: user_info["uid"]
+	# 			email: User.dummy_email
+	# 			user.twitter_token =
+	# 		)
+	# 	user.save!
+	# 	end
+	# 	return user
+	# end
+
+	def self.find_or_create_from_access_token(provider,access_token)
+		user = find_by(provider: provider, uid: access_token.params["user_id"])
+
+		unless user
+			binding.pry
+			user = User.new(
+			# user = new(
+				provider: provider,
+				uid: access_token.params["user_id"],
+				email: User.dummy_email,
+			)
+
+			if provider == "twitter"
+				user.twitter_token = access_token.token
+				user.twitter_secret = access_token.secret
+			end
+			user.save!
+		end
+		return user
+	end
+
 
 	def self.find_or_create_from_auth(auth)
 		user = find_by(provider: auth.provider, uid: auth.uid)

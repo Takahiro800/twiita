@@ -2,6 +2,8 @@ class Article < ApplicationRecord
   validates :origin_context, :origin_link, presence: true
   validates :twitter_id, uniqueness: true
 
+	belongs_to :user
+
   def self.pull_tweets(tweets)
     pull_tweets = []
 

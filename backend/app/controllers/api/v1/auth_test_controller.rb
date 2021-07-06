@@ -92,9 +92,6 @@ class Api::V1::AuthTestController < ApplicationController
 			render json: "ログインできませんでした"
     end
 	end
-
-
-
 end
 
 end

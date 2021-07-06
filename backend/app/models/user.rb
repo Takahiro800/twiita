@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:twitter, :pocket]
   include DeviseTokenAuth::Concerns::User
+	has_many :articles
 
 	devise :omniauthable, omniauth_providers: [:twitter]
 

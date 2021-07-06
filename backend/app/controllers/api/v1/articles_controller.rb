@@ -1,13 +1,15 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_twitter_client, only: [:create, :index]
-	# before_action :logged_in_user, only:[:index, :create, :search]
+	before_action :current_user, only:[:index, :create, :search]
 
   def index
-    render json: Article.all
+    render json: current_user.Article.all
   end
 
   def create
-    article = Article.create(article_params)
+    article = Article.new(article_params)
+		article.user_id = current_user.id
+		article.save
     if article.valid?
       render json: {status: 'success', message: '保存しました'}
     else
@@ -21,7 +23,8 @@ class Api::V1::ArticlesController < ApplicationController
 
   def search
     @search_params = article_search_params
-    @articles = Article.search(@search_params[:keyword])
+		binding.pry
+    @articles = current_user.articles.search(@search_params[:keyword])
     render json: @articles
   end
 

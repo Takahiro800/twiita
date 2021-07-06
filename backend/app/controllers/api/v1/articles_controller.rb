@@ -23,7 +23,6 @@ class Api::V1::ArticlesController < ApplicationController
 
   def search
     @search_params = article_search_params
-		binding.pry
     @articles = current_user.articles.search(@search_params[:keyword])
     render json: @articles
   end

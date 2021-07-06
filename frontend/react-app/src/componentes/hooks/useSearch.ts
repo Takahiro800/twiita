@@ -7,7 +7,8 @@ export const useSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const search = useCallback((keyword: string) => {
-    Axios.get<ArticleType[]>("http://localhost:3000/api/v1/articles/search", {
+    Axios.get<ArticleType[]>("/api/v1/articles/search", {
+      withCredentials: true,
       params: {
         keyword: keyword,
       },

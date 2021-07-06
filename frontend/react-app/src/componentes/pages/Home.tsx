@@ -18,8 +18,6 @@ export const Home: VFC = memo(() => {
 
   return (
     <>
-      <p>HOMEページです</p>
-      <p>ログイン状態</p>
       <p>{loggedInStatus}</p>
       <Flex justifyContent="center">
         <InputGroup>

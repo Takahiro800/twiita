@@ -24,7 +24,13 @@ export const ArticleCard: VFC<Props> = memo((props) => {
 
   const createArticle = () => {
     // axios.post<ResponseType>("http://localhost:3000/api/v1/articles", { article });
-    Axios.post<ResponseType>("/api/v1/articles", { article })
+    Axios.post<ResponseType>(
+      "/api/v1/articles",
+      { article },
+      {
+        withCredentials: true,
+      }
+    )
       .then((res) => {
         showMessage({ title: res.data.message, status: res.data.status });
       })

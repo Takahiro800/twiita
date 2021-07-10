@@ -22,7 +22,7 @@ export const useAuthTwitter = () => {
       .then((res) => {
         console.log(res);
         const windowLogin = window.open(res.data.oauth_url);
-        CheckLoginStatusTwitter(windowLogin, res.data);
+        CheckLoginStatusTwitter(windowLogin, "ログインしました");
       })
       .catch((err) => {
         console.log("error!!!!!!!!!!!!");

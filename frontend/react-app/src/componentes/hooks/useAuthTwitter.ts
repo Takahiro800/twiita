@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Axios } from "../../Axios";
+import { UserContext } from "../../providers/UserProvider";
 
 export const useAuthTwitter = () => {
   const history = useHistory();
+  const loginStatus = useContext(UserContext);
 
   const CheckLoginStatusTwitter = (window: Window | null, text: string) => {
     if (window!.closed) {

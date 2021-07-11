@@ -1,5 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { memo, useEffect, VFC } from "react";
+import { memo, useContext, useEffect, VFC } from "react";
+import { UserContext } from "../../providers/UserProvider";
 import theme from "../../theme/theme";
 import { ArticleCard } from "../ArticleCard";
 
@@ -9,6 +10,8 @@ export const Timeline: VFC = memo(() => {
   const { pullTimelines, articles, loading, error } = usePullTimelines();
 
   const onClickPullTimelines = () => pullTimelines();
+  const loginStatus = useContext(UserContext);
+  console.log(loginStatus);
 
   useEffect(() => onClickPullTimelines(), []);
 
